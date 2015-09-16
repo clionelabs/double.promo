@@ -15,6 +15,10 @@ body {
   * {
     font-size: inherit;
   }
+  a {
+    color: $double-orange;
+    text-decoration: none;
+  }
   .logo {
     color: $double-icon-color;
     font-family: $header-font;
@@ -134,14 +138,33 @@ body {
       label {
         margin-bottom: 0;
       }
-      button {
-        width: 100%;
-        border: none;
-        border-radius: 10px;
-        background: $double-orange;
-        padding: 1em 0;
-        color: white;
-      }
+    }
+  }
+
+  button,a.button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: $double-orange;
+    padding: 1em 0;
+    color: white;
+    font-family: $text-font;
+    text-decoration: none;
+
+  }
+
+  .success-message, .send-request-container {
+    max-width: 610px;
+    margin: 0 auto 2.56rem auto;
+    @media (max-width:640px) {
+      margin: 0 1rem 2.56rem 1rem;
+    }
+  }
+
+  .send-request-container {
+    a.button.send-request {
+      font-size: 0.885rem;
+      padding: 0.885rem 2em;
     }
   }
 }

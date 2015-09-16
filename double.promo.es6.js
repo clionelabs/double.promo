@@ -38,7 +38,7 @@ if (Meteor.isClient) {
       let email = e.target.email.value;
       let company = e.target['company-website'].value;
       Meteor.call('register', name, email, company, tmpl.user()._id, function() {
-
+        Router.go('/success');
       })
     }
   })
@@ -54,5 +54,7 @@ Router.route('/', {
     let instance = this;
     return { promoCode : instance.params.query.promoCode }
   }
-
+});
+Router.route('/success', {
+  template : 'success'
 });
