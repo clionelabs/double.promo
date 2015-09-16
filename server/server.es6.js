@@ -21,5 +21,6 @@ Meteor.methods({
 });
 
 Meteor.publish('promoUser', function(promoCode) {
+  if (!promoCode) return;
   return Meteor.users.find({ 'profile.promo.code' : promoCode });
 });

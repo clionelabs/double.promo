@@ -1,0 +1,50 @@
+<template name="main">
+    <div class='logo'>DOUBLE</div>
+    <h1>Double gets things done for {{ firstName }}</h1>
+    <div class='main-attraction'>
+        <div class='referrer'>
+            <img src='{{ userProfilePicUrl }}'/>
+        </div>
+        <div class='heart'>
+            <i class='fa fa-heart'></i>
+        </div>
+        <div class='double'>
+            <img src='/double-logo.png'/>
+        </div>
+    </div>
+    <div class="testimonial">
+        <p class="passage">{{ testimonial }}</p>
+        <span class="name">{{ displayName }}</span>
+    </div>
+    <h2>Free Membership on Double</h2>
+    <div class="form-and-facts">
+        <div class="facts">
+            <p>{{ firstName }} loves how Double lets him focus what matters most and he wants you to experience Double risk-free.</p>
+
+            <p>
+                Double is your on-demand business assistant. We take care of admin tasks so you can focus on building and growing your business. Learn more.
+
+            </p>
+
+            <p>Sign up now and both {{ firstName }} and you will <b>get one month of membership free.</b></p>
+
+        </div>
+        <div class="form-container">
+            <form id="signup">
+                <label for="full-name">Your full name *</label>
+                <input name="full-name" type="text" required />
+                <label for="email">Your email *</label>
+                <input name="email" type="email" required />
+                <label for="company-website">Your company / website</label>
+                <input name="company-website" />
+                <button type="submit">START FREE MEMBERSHIP</button>
+                <p class="terms">
+                    By signing up, I agree to Double&apos;s <a href="http://double.co/terms">Terms of Services</a> and
+                    <a href="http://double.co/privacy">Privacy Policy</a>.<br/>
+                    * required field
+                </p>
+            </form>
+        </div>
+    </div>
+
+</template>
