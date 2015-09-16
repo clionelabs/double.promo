@@ -11,7 +11,7 @@ Meteor.methods({
       referrerId : referrerId
     }, function() {
       Email.send({
-        from : 'promo@double.co',
+        from : 'promo@askdouble.com',
         to : 'thomas@double.co',
         subject: `New Referral from ${referrer.profile.firstname}`,
         text: `${name} of ${website} has signed up with ${email}, YEAH!!!!`
