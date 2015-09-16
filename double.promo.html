@@ -13,7 +13,7 @@
   <div class='logo'>DOUBLE</div>
   <h1>Double gets things done for {{ firstName }}</h1>
   <div class='main-attraction'>
-    <div class='referer'>
+    <div class='referrer'>
       <img src='{{ userProfilePicUrl }}'/>
     </div>
     <div class='heart'>
@@ -37,15 +37,15 @@
 
         </p>
 
-        <p>Sign up now and both Casey and you will <b>get one month of membership free.</b></p>
+        <p>Sign up now and both {{ firstName }} and you will <b>get one month of membership free.</b></p>
 
     </div>
     <div class="form-container">
       <form id="signup">
         <label for="full-name">Your full name *</label>
-        <input name="full-name" required />
+        <input name="full-name" type="text" required />
         <label for="email">Your email *</label>
-        <input name="email" required />
+        <input name="email" type="email" required />
         <label for="company-website">Your company / website</label>
         <input name="company-website" />
         <button type="submit">START FREE MEMBERSHIP</button>

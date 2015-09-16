@@ -1,19 +1,47 @@
 if (Meteor.isClient) {
+  Template.main.onCreated(function() {
+    let instance = this;
+    instance.autorun(function() {
+      let subscription = instance.subscribe('promoUser', instance.data.promoCode);
+    });
+
+    instance.user = function() { return Meteor.users.findOne() };
+  });
   Template.main.helpers({
     firstName() {
-      return 'Casey';
+      let user = Template.instance().user();
+      if (!user) return;
+      return user.profile.firstname;
     },
     userProfilePicUrl() {
-      let hash = CryptoJS.MD5('gilbert.wat@getthingsdone.hk');
-      return `http://0.gravatar.com/avatar/${hash}.png`;
+      let user = Template.instance().user();
+      if (!user) return;
+      return Template.instance().user()._id + '.png';
     },
     testimonial() {
-      return 'Double just works. Get yours and you’ll find yourself doing more than you’re able to do by yourself and keep the time you saved working on more important things you can’t delegate.';
+      let user = Template.instance().user();
+      if (!user) return;
+      return Template.instance().user().profile.promo.message;
     },
     displayName() {
-      return 'Casey Lau';
+      let user = Template.instance().user();
+      if (!user) return;
+      let fname = Template.instance().user().profile.firstname;
+      let lname = Template.instance().user().profile.lastname;
+      return `${fname} ${lname}`;
     }
   });
+  Template.main.events({
+    "submit #signup" : function(e, tmpl) {
+      e.preventDefault();
+      let name = e.target['full-name'].value;
+      let email = e.target.email.value;
+      let company = e.target['company-website'].value;
+      Meteor.call('register', name, email, company, tmpl.user()._id, function() {
+
+      })
+    }
+  })
 }
 
 Router.configure({
@@ -21,11 +49,10 @@ Router.configure({
 });
 
 Router.route('/', {
-  template : 'main'
-});
+  template : 'main',
+  data() {
+    let instance = this;
+    return { promoCode : instance.params.query.promoCode }
+  }
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
+});

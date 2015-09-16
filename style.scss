@@ -32,6 +32,10 @@ body {
     font-family: $header-font;
     text-align: center;
     margin: 0 auto;
+    @media (max-width:640px) {
+      text-align: left;
+      margin: 0 0 0 1rem;
+    }
   }
   h1 {
     font-size: 1.67rem;
@@ -57,7 +61,7 @@ body {
       width: 100px;
       height: 100px;
     }
-    .referer {
+    .referrer {
       display: flex;
       align-items: center;
       justify-content: center;
