@@ -1,4 +1,3 @@
-Promos = new Meteor.Collection('promos');
 
 Meteor.methods({
   register(name, email, website, referrerId) {
@@ -22,5 +21,9 @@ Meteor.methods({
 
 Meteor.publish('promoUser', function(promoCode) {
   if (!promoCode) return;
-  return Meteor.users.find({ 'profile.promo.code' : promoCode });
+  let promoReferrer = PromoReferrers.findOne({promoCode: promoCode});
+  return [
+    PromoReferrers.find({ promoCode: promoCode}),
+    Meteor.users.find({ _id: promoReferrer.referrerId})
+  ]
 });

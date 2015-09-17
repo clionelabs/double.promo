@@ -4,6 +4,7 @@ Template.main.onCreated(function() {
     let subscription = instance.subscribe('promoUser', instance.data.promoCode);
   });
 
+  instance.promoReferrer = function() { return PromoReferrers.findOne() };
   instance.user = function() { return Meteor.users.findOne() };
 });
 Template.main.helpers({
@@ -22,7 +23,7 @@ Template.main.helpers({
   testimonial() {
     let user = Template.instance().user();
     if (!user) return;
-    return Template.instance().user().profile.promo.message;
+    return Template.instance().promoReferrer().message;
   },
   displayName() {
     let user = Template.instance().user();
