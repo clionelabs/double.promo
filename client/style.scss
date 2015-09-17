@@ -150,6 +150,9 @@ body {
     color: white;
     font-family: $text-font;
     text-decoration: none;
+    &:active {
+      background: darken($double-orange, 10%);
+    }
 
   }
 
