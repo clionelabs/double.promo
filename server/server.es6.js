@@ -22,6 +22,7 @@ Meteor.methods({
 Meteor.publish('promoUser', function(promoCode) {
   if (!promoCode) return;
   let promoReferrer = PromoReferrers.findOne({promoCode: promoCode});
+  if (!promoReferrer) return;
   return [
     PromoReferrers.find({ promoCode: promoCode}),
     Meteor.users.find({ _id: promoReferrer.referrerId})

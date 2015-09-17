@@ -1,9 +1,5 @@
 Template.main.onCreated(function() {
   let instance = this;
-  instance.autorun(function() {
-    let subscription = instance.subscribe('promoUser', instance.data.promoCode);
-  });
-
   instance.promoReferrer = function() { return PromoReferrers.findOne() };
   instance.user = function() { return Meteor.users.findOne() };
 });
