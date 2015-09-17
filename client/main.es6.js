@@ -16,7 +16,7 @@ Template.main.helpers({
   userProfilePicUrl() {
     let user = Template.instance().user();
     if (!user) return;
-    return `/${user._id}.png`;
+    return `/${user._id}.jpg`;
   },
   testimonial() {
     return Template.instance().promoReferrer().message;
