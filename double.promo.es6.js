@@ -3,7 +3,14 @@ Router.configure({
 });
 
 Router.route('/', {
-  template : 'main',
+  onBeforeAction() {
+    let promoReferrer = PromoReferrers.findOne();
+    if (!promoReferrer) {
+      window.location = 'http://double.co';
+    } else {
+      this.next();
+    }
+  },
   waitOn() {
     let instance = this;
     return [
@@ -13,6 +20,9 @@ Router.route('/', {
   data() {
     let instance = this;
     return { promoCode : instance.params.query.code }
+  },
+  action() {
+    this.render("main");
   }
 });
 Router.route('/success', {
