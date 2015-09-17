@@ -1,8 +1,8 @@
 $double-icon-color: #C8C8C8;
 
 $header-font: 'Montserrat', sans-serif;
-$italic-font: 'Noto Serif', serif;
-$text-font: 'Lato', sans-serif;
+$italic-font: serif;
+$text-font: sans-serif;
 
 $double-orange : #F06040;
 $double-grey: #FAFAFA;
@@ -25,6 +25,9 @@ body {
     margin: 58px 47px 1em 47px;
     @media (max-width: 640px) {
       margin: 1em;
+    }
+    a {
+      color: $double-icon-color;
     }
   }
 

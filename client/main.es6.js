@@ -30,6 +30,12 @@ Template.main.helpers({
     let fname = Template.instance().user().profile.firstname;
     let lname = Template.instance().user().profile.lastname;
     return `${fname} ${lname}`;
+  },
+  she() {
+    return 'she';
+  },
+  her() {
+    return 'her';
   }
 });
 Template.main.events({
