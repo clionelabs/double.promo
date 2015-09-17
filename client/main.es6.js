@@ -21,8 +21,6 @@ Template.main.helpers({
     return `/${fname.toLowerCase()}-${lname.toLowerCase()}.png`;
   },
   testimonial() {
-    let user = Template.instance().user();
-    if (!user) return;
     return Template.instance().promoReferrer().message;
   },
   displayName() {
@@ -31,12 +29,6 @@ Template.main.helpers({
     let fname = Template.instance().user().profile.firstname;
     let lname = Template.instance().user().profile.lastname;
     return `${fname} ${lname}`;
-  },
-  she() {
-    return 'she';
-  },
-  her() {
-    return 'her';
   }
 });
 Template.main.events({
