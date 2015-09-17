@@ -15,7 +15,9 @@ Template.main.helpers({
   userProfilePicUrl() {
     let user = Template.instance().user();
     if (!user) return;
-    return Template.instance().user()._id + '.png';
+    let fname = Template.instance().user().profile.firstname;
+    let lname = Template.instance().user().profile.lastname;
+    return `/${fname.toLowerCase()}-${lname.toLowerCase()}.png`;
   },
   testimonial() {
     let user = Template.instance().user();
