@@ -119,7 +119,7 @@ body {
         width: 100%;
       }
       input {
-        width: 100%;
+        width: calc(100% - 0.6rem);
         margin-bottom: 0.885rem;
         border: none;
         background: #DCDCDC;
@@ -127,6 +127,7 @@ body {
         font-family: $text-font;
         font-size: inherit;
         height: calc(1em * 1.2);
+        padding:0.3rem 0.3rem;
 
         &[name="company-website"] {
           margin-bottom: 1.78rem;
