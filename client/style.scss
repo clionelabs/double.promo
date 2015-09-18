@@ -92,7 +92,7 @@ body {
   .testimonial {
     max-width: 610px;
     margin: 0 auto 2.56rem auto;
-    padding: 0.3em 0.5em 0.3em 1.5em;
+    padding: 0.3em 1.5em 0.3em 1.5em;
     border-left: 0.5em solid $double-orange;
     .passage {
       margin:0 0 1em 0;
@@ -114,6 +114,8 @@ body {
     justify-content: space-between;
     max-width : 610px;
     margin: 0 auto;
+    padding: 0.3em 1.5em 0.3em 1.5em;
+    border-left: 0.5em solid transparent;
     @media (max-width: 640px) {
       margin: 0 1rem;
     }
