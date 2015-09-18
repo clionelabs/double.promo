@@ -53,6 +53,13 @@ body {
     margin-bottom: 2rem;
   }
 
+  .loading-message {
+    color: $double-orange;
+    font-size: 25px;
+    font-weight: 300;
+    font-family: sans-serif;
+  }
+
   .main-attraction {
     font-size: 1.67rem;
     max-width: 450px;
