@@ -10,12 +10,10 @@ Meteor.methods({
       referrerId : referrerId
     }, function() {
       let count = Promos.find({referrerId:referrerId}).count();
-      Email.send({
-        from : 'promo@askdouble.com',
-        to : 'thomas@double.co',
-        subject: `New Referral from ${referrer.profile.firstname} (${count} th)`,
-        text: `${name} of ${website} has signed up with ${email}, YEAH!!!!`
-      });
+      let hook = "https://hooks.slack.com/services/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";
+      let payload = { 'text': `${referrer.profile.firstname} referred ${name} (${email}) from ${website || "N/A"}. ${count} th referrals!` };
+      payload = {'payload': JSON.stringify(payload)};
+      HTTP.post(hook, {'params': payload});
     });
   }
 });
