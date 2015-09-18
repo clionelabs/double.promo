@@ -25,6 +25,11 @@ Router.route('/', {
     this.render("main");
   }
 });
+
 Router.route('/success', {
   template : 'success'
+});
+
+Router.route('/terms', {
+  template : 'terms'
 });

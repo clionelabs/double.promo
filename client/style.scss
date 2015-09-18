@@ -151,9 +151,20 @@ body {
       label,.terms {
         font-size: 0.885rem;
       }
+      .terms {
+        color: darken($double-grey, 40%);
+      }
       label {
         margin-bottom: 0;
       }
+    }
+  }
+
+  .promotion-terms {
+    max-width: 610px;
+    margin: 0 auto 2.56rem auto;
+    .li {
+      line-height: 2em;
     }
   }
 
