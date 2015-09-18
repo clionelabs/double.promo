@@ -144,6 +144,9 @@ body {
       label,.terms {
         font-size: 0.885rem;
       }
+      .terms {
+        color: darken($double-grey, 40%);
+      }
       label {
         margin-bottom: 0;
       }
