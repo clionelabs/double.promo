@@ -153,6 +153,14 @@ body {
     }
   }
 
+  .promotion-terms {
+    max-width: 610px;
+    margin: 0 auto 2.56rem auto;
+    .li {
+      line-height: 2em;
+    }
+  }
+
   button,a.button {
     width: 100%;
     border: none;
