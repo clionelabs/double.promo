@@ -2,7 +2,7 @@ Router.configure({
   layoutTemplate: 'layout'
 });
 
-Router.route('/', {
+Router.route('/r/:code', {
   onBeforeAction() {
     let promoReferrer = PromoReferrers.findOne();
     if (!promoReferrer) {
@@ -14,12 +14,12 @@ Router.route('/', {
   waitOn() {
     let instance = this;
     return [
-      Meteor.subscribe('promoUser', instance.params.query.code)
+      Meteor.subscribe('promoUser', instance.params.code)
     ];
   },
   data() {
     let instance = this;
-    return { promoCode : instance.params.query.code }
+    return { promoCode : instance.params.code }
   },
   action() {
     this.render("main");
