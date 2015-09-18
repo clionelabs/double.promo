@@ -3,6 +3,11 @@ Template.main.onCreated(function() {
   instance.promoReferrer = function() { return PromoReferrers.findOne() };
   instance.user = function() { return Meteor.users.findOne() };
 });
+
+Template.main.onRendered(function() {
+  $("#signup").validate();
+});
+
 Template.main.helpers({
   firstName() {
     let user = Template.instance().user();

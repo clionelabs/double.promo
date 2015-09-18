@@ -126,19 +126,26 @@ body {
         flex: 0 0 100%;
         width: 100%;
       }
-      input {
-        width: calc(100% - 0.6rem);
+      .form-group {
         margin-bottom: 0.885rem;
-        border: none;
-        background: #DCDCDC;
-        line-height:1.2;
-        font-family: $text-font;
-        font-size: inherit;
-        height: calc(1em * 1.2);
-        padding:0.3rem 0.3rem;
 
-        &[name="company-website"] {
-          margin-bottom: 1.78rem;
+        .error {
+          color: #F06040;
+        }
+
+        input {
+          width: calc(100% - 0.6rem);
+          border: none;
+          background: #DCDCDC;
+          line-height:1.2;
+          font-family: $text-font;
+          font-size: inherit;
+          height: calc(1em * 1.2);
+          padding:0.3rem 0.3rem;
+
+          &[name="company-website"] {
+            margin-bottom: 1.78rem;
+          }
         }
       }
       label,.terms {
