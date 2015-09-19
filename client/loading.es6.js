@@ -1,7 +1,7 @@
 Template.loading.rendered = function () {
   if (! Session.get('loadingSplash') ) {
     this.loading = window.pleaseWait({
-      logo: '/double-logo.png',
+      logo: '/double.logo.square.inverted.small.png',
       backgroundColor: '#FAFAFA',
       loadingHtml: message
     });
