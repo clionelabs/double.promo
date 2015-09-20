@@ -1,29 +1,25 @@
 
 Meteor.methods({
-  register(name, email, website, referrerId) {
+  register(name, email, website, referrerName, referrerUserId) {
     this.unblock();
-    let referrer = Meteor.users.findOne(referrerId);
-    Promos.insert({
+    PromoRegistrations.insert({
       name : name,
       email : email,
       website : website,
-      referrerId : referrerId
+      referrerId : referrerUserId
     }, function() {
-      let count = Promos.find({referrerId:referrerId}).count();
+      let count = PromoRegistrations.find({referrerId:referrerUserId}).count();
       let hook = "https://hooks.slack.com/services/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";
-      let payload = { 'text': `${referrer.profile.firstname} referred ${name} (${email}) from ${website || "N/A"}. ${count} th referrals!` };
+      let payload = { 'text': `${referrerName} referred *${name}* (${email}) from ${website || "N/A"}. ${count} th referrals!` };
       payload = {'payload': JSON.stringify(payload)};
       HTTP.post(hook, {'params': payload});
     });
   }
 });
 
-Meteor.publish('promoUser', function(promoCode) {
-  if (!promoCode) return [];
-  let promoReferrer = PromoReferrers.findOne({promoCode: promoCode});
-  if (!promoReferrer) return [];
-  return [
-    PromoReferrers.find({ promoCode: promoCode}),
-    Meteor.users.find({ _id: promoReferrer.referrerId})
-  ]
+Meteor.publish('referrals', function(code) {
+  if (!code) return [];
+  let crusor = PromoReferrals.find({promoCode: code});
+  if (crusor.count()==0) return [];
+  return [ crusor ];
 });

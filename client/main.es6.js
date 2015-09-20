@@ -1,30 +1,27 @@
 Template.main.onCreated(function() {
   let instance = this;
-  instance.promoReferrer = function() { return PromoReferrers.findOne() };
-  instance.user = function() { return Meteor.users.findOne() };
+  instance.referral = function() { return PromoReferrals.findOne(); };
+  instance.referrer = function() { return PromoReferrals.findOne().referrer; };
 });
 
 Template.main.onRendered(function() {
   $("#signup").validate();
 });
 
+// TODO do we need template helpers to access these properties?
 Template.main.helpers({
-  firstName() {
-    let user = Template.instance().user();
-    if (!user) return;
-    return user.profile.firstname;
-  },
   userProfilePicUrl() {
-    return Template.instance().promoReferrer().profilePicUrl;
+    return Template.instance().referrer().profilePicUrl;
   },
   testimonial() {
-    return Template.instance().promoReferrer().message;
+    return Template.instance().referral().message;
+  },
+  firstName() {
+    return Template.instance().referrer().firstName;
   },
   displayName() {
-    let user = Template.instance().user();
-    if (!user) return;
-    let fname = Template.instance().user().profile.firstname;
-    let lname = Template.instance().user().profile.lastname;
+    let fname = Template.instance().referrer().firstName;
+    let lname = Template.instance().referrer().lastName;
     return `${fname} ${lname}`;
   }
 });
@@ -34,8 +31,10 @@ Template.main.events({
     let name = e.target['full-name'].value;
     let email = e.target.email.value;
     let company = e.target['company-website'].value;
-    Meteor.call('register', name, email, company, tmpl.user()._id, function() {
+    let referrerName = tmpl.referrer().firstName;
+    let referrerUserId = tmpl.referrer().userId;
+    Meteor.call('register', name, email, company, referrerName, referrerUserId, function() {
       Router.go('/success');
-    })
+    });
   }
 })
