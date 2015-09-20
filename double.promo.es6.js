@@ -20,10 +20,24 @@ Router.route('/r/:code', {
   },
   data() {
     let instance = this;
-    return { promoCode : instance.params.code }
+    let code = instance.params.code;
+    return {referral: PromoReferrers.findOne({promoCode: code})};
   },
   action() {
     this.render("main");
+  },
+  onAfterAction() {
+    let instance = this;
+    if (instance.ready() && Meteor.isClient) {
+      let referral = instance.data().referral;
+      console.log(`code: ${referral.promoCode}, referral: ${referral}`);
+      SEO.set({
+        og: {
+          'description': 'blah'
+        }
+      });
+      console.log(`SEO: ${SeoCollection.findOne()}`);
+    }
   }
 });
 
