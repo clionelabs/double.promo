@@ -5,8 +5,8 @@ Router.configure({
 
 Router.route('/r/:code', {
   onBeforeAction() {
-    let promoReferrer = PromoReferrers.findOne();
-    if (!promoReferrer) {
+    let referral = PromoReferrals.findOne();
+    if (!referral) {
       window.location = 'http://double.co';
     } else {
       this.next();
@@ -15,7 +15,7 @@ Router.route('/r/:code', {
   waitOn() {
     let instance = this;
     return [
-      Meteor.subscribe('promoUser', instance.params.code)
+      Meteor.subscribe('referrals', instance.params.code)
     ];
   },
   data() {
