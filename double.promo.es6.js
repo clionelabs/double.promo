@@ -33,7 +33,7 @@ Router.route('/r/:code', {
       console.log(`code: ${referral.promoCode}, referral: ${referral}`);
       SEO.set({
         og: {
-          'description': 'blah'
+          'description': referral.message
         }
       });
       console.log(`SEO: ${SeoCollection.findOne()}`);
