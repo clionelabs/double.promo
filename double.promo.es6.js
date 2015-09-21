@@ -20,11 +20,23 @@ Router.route('/r/:code', {
   },
   data() {
     let instance = this;
-    // TODO: what do we need this for?
-    return { promoCode : instance.params.code }
+    let code = instance.params.code;
+    return {referral: PromoReferrals.findOne({promoCode: code})};
   },
   action() {
     this.render("main");
+  },
+  onAfterAction() {
+    let instance = this;
+    if (instance.ready() && Meteor.isClient) {
+      let referral = instance.data().referral;
+      SEO.set({
+        og: {
+          'image': referral.imageUrl,
+          'description': referral.message
+        }
+      });
+    }
   }
 });
 
