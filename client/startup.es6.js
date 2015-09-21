@@ -5,10 +5,13 @@ Meteor.startup(
       meta: {
         'description': 'Double is on-demand business assistant on Slack. Free membership + 10% off our minute rate if you join now.'
       },
+      twitter: {
+        'card': 'summary_large_image',
+        'site': '@askDouble'
+      },
       og: {
         'type': 'website',
-        'site_name': 'Double',
-        'image': 'https://dl.dropboxusercontent.com/u/88778/double.logo.square.inverted.small.png?dl=1'
+        'site_name': 'Double'
       }
     });
   }

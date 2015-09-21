@@ -30,10 +30,18 @@ Router.route('/r/:code', {
     let instance = this;
     if (instance.ready() && Meteor.isClient) {
       let referral = instance.data().referral;
+      // TODO: Supposedly setting the meta tag will automatically set both
+      // Twitter and Facebook. I only see `description` being in effect
+      // https://github.com/DerMambo/ms-seo#automatically-set-twitter-and-og-meta-tags-like-title
       SEO.set({
-        og: {
-          'image': referral.imageUrl,
+        meta: {
           'description': referral.message
+        },
+        og: {
+          image: referral.imageUrl
+        },
+        twitter: {
+          image: referral.imageUrl
         }
       });
     }
