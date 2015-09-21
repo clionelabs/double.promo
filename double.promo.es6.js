@@ -47,3 +47,7 @@ Router.route('/success', {
 Router.route('/terms', {
   template : 'terms'
 });
+
+Router.route('/(.*)', () => {
+  window.location = 'http://double.co';
+});
