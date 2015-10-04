@@ -1,15 +1,15 @@
-Template.main.onCreated(function() {
+Template.referral.onCreated(function() {
   let instance = this;
   instance.referral = function() { return PromoReferrals.findOne(); };
   instance.referrer = function() { return PromoReferrals.findOne().referrer; };
 });
 
-Template.main.onRendered(function() {
+Template.referral.onRendered(function() {
   $("#signup").validate();
 });
 
 // TODO do we need template helpers to access these properties?
-Template.main.helpers({
+Template.referral.helpers({
   userProfilePicUrl() {
     return Template.instance().referrer().profilePicUrl;
   },
@@ -25,7 +25,7 @@ Template.main.helpers({
     return `${fname} ${lname}`;
   }
 });
-Template.main.events({
+Template.referral.events({
   "submit #signup" : function(e, tmpl) {
     e.preventDefault();
     let name = e.target['full-name'].value;
