@@ -30,10 +30,10 @@ Template.referral.events({
     e.preventDefault();
     let name = e.target['full-name'].value;
     let email = e.target.email.value;
-    let company = e.target['company-website'].value;
+    let website = e.target['company-website'].value;
     let referrerName = tmpl.referrer().firstName;
     let referrerUserId = tmpl.referrer().userId;
-    Meteor.call('register', name, email, company, referrerName, referrerUserId, function() {
+    Meteor.call('register', name, email, website, referrerName, referrerUserId, function() {
       Router.go('/success');
     });
   }
