@@ -1,9 +1,9 @@
 
 Meteor.methods({
-  signup(name, email, company) {
+  signup(name, email, slack) {
     this.unblock();
     let hook = "https://hooks.slack.com/services/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";
-    let payload = { 'text': `*${name}* (${email}) from ${company || "N/A"} signed up.` };
+    let payload = { 'text': `*${name}* (email: ${email}, slack: ${slack || "N/A"}) signed up.` };
     payload = {'payload': JSON.stringify(payload)};
     HTTP.post(hook, {'params': payload});
   },
