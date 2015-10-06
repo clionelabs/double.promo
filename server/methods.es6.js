@@ -1,4 +1,3 @@
-
 Meteor.methods({
   signup(name, email, slack) {
     this.unblock();
@@ -22,11 +21,4 @@ Meteor.methods({
       HTTP.post(hook, {'params': payload});
     });
   }
-});
-
-Meteor.publish('referrals', function(code) {
-  if (!code) return [];
-  let crusor = PromoReferrals.find({promoCode: code});
-  if (crusor.count()==0) return [];
-  return [ crusor ];
 });
