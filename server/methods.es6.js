@@ -10,7 +10,7 @@ Meteor.methods({
     const effectiveMinuteRate = 6.0;
     const minuteCredit = 30;
 
-    const userId = D.Users.createCustomer({
+    const options = {
       email: email,
       password: Meteor.uuid(),
       profile: {
@@ -20,15 +20,18 @@ Meteor.methods({
         hourlyRate: effectiveMinuteRate, // TODO hourlyRate is incorrectly labelled
         creditMs: minuteCredit
       }
-    });
+    };
 
-    if (userId) {
+    try {
+      const userId = D.Users.createCustomer(options);
+
       // TODO: Send onboarding email
       const text = `New customer sign up: *${name}*, email: ${email}, slack: ${slack || "N/A"}`;
       Slack.notify('signup', text);
-    } else {
-      const error = `Cannot create account with name: ${name}, email: ${email}, slack: ${slack || "N/A"}`;
-      Slack.notify('signup', error);
+    }
+    catch (error) {
+      const errorText = `${error}, ${JSON.stringify(options)}`;
+      Slack.notify('signup', errorText);
     }
   },
   register(name, email, website, referrerName, referrerUserId) {
