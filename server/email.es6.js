@@ -12,6 +12,7 @@ EmailTemplates = {
     return {
       from: 'Double <double@double.co>',
       to: emailAddress,
+      bcc: ['thomas@double.co', 'cary@double.co'],
       subject: 'Your Double is ready to serve',
       text: text
     };
