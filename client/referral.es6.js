@@ -1,15 +1,15 @@
-Template.main.onCreated(function() {
+Template.referral.onCreated(function() {
   let instance = this;
   instance.referral = function() { return PromoReferrals.findOne(); };
   instance.referrer = function() { return PromoReferrals.findOne().referrer; };
 });
 
-Template.main.onRendered(function() {
+Template.referral.onRendered(function() {
   $("#signup").validate();
 });
 
 // TODO do we need template helpers to access these properties?
-Template.main.helpers({
+Template.referral.helpers({
   userProfilePicUrl() {
     return Template.instance().referrer().profilePicUrl;
   },
@@ -25,15 +25,15 @@ Template.main.helpers({
     return `${fname} ${lname}`;
   }
 });
-Template.main.events({
+Template.referral.events({
   "submit #signup" : function(e, tmpl) {
     e.preventDefault();
     let name = e.target['full-name'].value;
     let email = e.target.email.value;
-    let company = e.target['company-website'].value;
+    let website = e.target['company-website'].value;
     let referrerName = tmpl.referrer().firstName;
     let referrerUserId = tmpl.referrer().userId;
-    Meteor.call('register', name, email, company, referrerName, referrerUserId, function() {
+    Meteor.call('register', name, email, website, referrerName, referrerUserId, function() {
       Router.go('/success');
     });
   }

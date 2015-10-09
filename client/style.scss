@@ -145,6 +145,11 @@ body {
         flex: 0 0 100%;
         width: 100%;
       }
+      // .signup-tagline {
+      //   text-align: center;
+      //   font-family: $text-font;
+      //   margin-bottom: 1em;
+      // }
       .form-group {
         margin-bottom: 0.885rem;
 
@@ -154,17 +159,19 @@ body {
 
         input {
           width: calc(100% - 0.6rem);
-          border: none;
-          background: #DCDCDC;
+          border: solid;
+          border-width: thin;
+          border-color: #9f9f9f;
+          background: #efefef;
           line-height:1.2;
           font-family: $text-font;
           font-size: inherit;
           height: calc(1em * 1.2);
           padding:0.3rem 0.3rem;
+        }
 
-          &[name="company-website"] {
-            margin-bottom: 1.78rem;
-          }
+        label {
+          font-weight: bold;
         }
       }
       label,.terms {
@@ -196,6 +203,7 @@ body {
     color: white;
     font-family: $text-font;
     text-decoration: none;
+    margin-top: 1em;
     &:active {
       background: darken($double-orange, 10%);
     }
