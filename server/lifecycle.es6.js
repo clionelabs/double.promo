@@ -37,11 +37,6 @@ LifeCycle = {
   welcomeNewCustomer (firstName, emailAddress, slackURL) {
     const email = EmailTemplates.welcome(firstName, emailAddress, slackURL);
     console.log(JSON.stringify(email));
-    // Email.send(
-    //   from: email.from,
-    //   to: email.to,
-    //   subject: email.subject,
-    //   text: email.text
-    // );
+    Email.send(email);
   }
 };
