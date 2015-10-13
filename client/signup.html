@@ -1,5 +1,12 @@
 <template name="signup">
     <h1>Experience Double FREE</h1>
+    {{#if discountCode }}
+    <div class="discount">
+      Discount code <span class="code">{{ discountCode }}</span> is applied.<br>
+      Sign up now to receive <span class="percent">{{ minuteRateDiscountPercent }}%</span> off our regular rate.<br>
+      Your effective rate is now <span class="rate">${{ effectiveRate }}</span> / minute until <span class="date">{{ validTillString }}</span>.
+    </div>
+    {{/if}}
     <div class="form-and-facts">
         <div class="facts">
           <p>
