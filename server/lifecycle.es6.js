@@ -7,7 +7,7 @@ LifeCycle = {
 
     // Should come from a plan with discount code in effect
     const starterPlan = Plans.starter;
-    let effectivePlan = Plans.applyDiscount(starterPlan, code);
+    const effectivePlan = Plans.applyDiscount(starterPlan, code);
 
     const options = {
       email: email,
@@ -22,9 +22,13 @@ LifeCycle = {
     };
     try {
       const userId = D.Users.createCustomer(options);
-      self.welcomeNewCustomer(firstname, email, slack);
-      const text = `New customer sign up: *${name}*, email: ${email}, slack: ${slack || "N/A"}`;
-      Slack.notify('signup', text);
+
+      // TODO: to refactor later. All parameters are passed in explicitly to minimize coupling between email template user, subscription, and promo code models.
+      const promoCode = PromoCodes.findOne({ code:code });
+      self.welcomeNewCustomer(firstname, email, slack, code, promoCode && promoCode.minuteRateDiscountPercent, effectivePlan.minuteRate, moment(promoCode && promoCode.validTill).format("MMM Do, YYYY"));
+
+      const text = `New customer sign up: *${name}*, email: ${email}, slack: ${slack || "N/A"}, code: ${code}`;
+      // Slack.notify('signup', text);
     }
     catch (error) {
       const errorText = `${error}, ${JSON.stringify(options)}`;
@@ -34,8 +38,8 @@ LifeCycle = {
 
   // TODO: we should refactor and pass in userId instead
   // of explicitly passing everything.
-  welcomeNewCustomer (firstName, emailAddress, slackURL) {
-    const email = EmailTemplates.welcome(firstName, emailAddress, slackURL);
+  welcomeNewCustomer (firstName, emailAddress, slackURL, code, minuteRateDiscountPercent, effectiveMinuteRate, discountValidTill) {
+    const email = EmailTemplates.welcome(firstName, emailAddress, slackURL, code, minuteRateDiscountPercent, effectiveMinuteRate, discountValidTill);
     console.log(JSON.stringify(email));
     Email.send(email);
   }

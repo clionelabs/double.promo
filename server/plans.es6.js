@@ -10,9 +10,14 @@ Plans = {
   },
 
   applyDiscount (plan, code) {
+    if (!code) {
+      return plan;
+    }
+
+    const promoCode = PromoCodes.findOne({code: code});
     return {
-      minuteRate: plan.minuteRate * (100-code.minuteRateDiscountPercent)/100,
-      initialMinuteCredit: plan.initialMinuteCredit + additionalMinuteCredit
+      minuteRate: plan.minuteRate * (100-promoCode.minuteRateDiscountPercent)/100,
+      initialMinuteCredit: plan.initialMinuteCredit + promoCode.additionalMinuteCredit
     };
   }
 }
