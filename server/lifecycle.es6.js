@@ -1,13 +1,13 @@
 LifeCycle = {
-  createAndWelcomeCustomer (name, email, slack) {
+  createAndWelcomeCustomer (name, email, slack, code) {
     const self = this;
     const splitNames = name.split(' ');
     const firstname = splitNames[0];
     const lastname = splitNames.slice(-1)[0];
 
     // Should come from a plan with discount code in effect
-    const effectiveMinuteRate = 6.0;
-    const minuteCredit = 30;
+    const starterPlan = Plans.starter;
+    let effectivePlan = Plans.applyDiscount(starterPlan, code);
 
     const options = {
       email: email,
@@ -16,8 +16,8 @@ LifeCycle = {
         firstname: firstname,
         lastname: lastname,
         slack: slack,
-        hourlyRate: effectiveMinuteRate, // TODO hourlyRate is incorrectly labelled
-        creditMs: minuteCredit
+        hourlyRate: effectivePlan.minuteRate, // TODO hourlyRate is incorrectly labelled
+        creditMs: effectivePlan.initialMinuteCredit
       }
     };
     try {
