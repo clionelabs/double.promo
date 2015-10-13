@@ -28,7 +28,7 @@ LifeCycle = {
       self.welcomeNewCustomer(firstname, email, slack, code, promoCode && promoCode.minuteRateDiscountPercent, effectivePlan.minuteRate, moment(promoCode && promoCode.validTill).format("MMM Do, YYYY"));
 
       const text = `New customer sign up: *${name}*, email: ${email}, slack: ${slack || "N/A"}, code: ${code}`;
-      // Slack.notify('signup', text);
+      Slack.notify('signup', text);
     }
     catch (error) {
       const errorText = `${error}, ${JSON.stringify(options)}`;
