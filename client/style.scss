@@ -224,4 +224,25 @@ body {
       padding: 0.885rem 2em;
     }
   }
+
+  .discount {
+    font-family: sans-serif;
+    line-height: 1.3em;
+    max-width: 610px;
+    margin: 0 auto 2.56rem auto;
+    padding: 0.3em 1.5em 0.3em 1.5em;
+    border-left: 0.5em solid $double-orange;
+    border-right: 0.5em solid transparent;
+    @media (max-width: 640px) {
+      padding: 0.3em 0.5em 0.3em 0.5em;
+      border-left: 0.3em solid $double-orange;
+      border-right: 0.3em solid transparent;
+    }
+    .code, .percent, .credits, .date, .rate {
+      font-family: monospace;
+      // background-color: lighten($double-orange, 10%);
+      // color: white;
+      color: $double-orange;
+    }
+  }
 }

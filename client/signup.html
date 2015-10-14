@@ -1,5 +1,12 @@
 <template name="signup">
     <h1>Experience Double FREE</h1>
+    {{#if discountCode }}
+    <div class="discount">
+      Discount code <span class="code">{{ discountCode }}</span> is applied.<br>
+      Sign up now to receive <span class="percent">{{ minuteRateDiscountPercent }}%</span> off our regular rate.<br>
+      Your effective rate is now <span class="rate">${{ effectiveRate }}</span> / minute until <span class="date">{{ validTillString }}</span>.
+    </div>
+    {{/if}}
     <div class="form-and-facts">
         <div class="facts">
           <p>
@@ -30,12 +37,14 @@
                 <input name="slack" type="url" placeholder="https://YOURCOMPANY.slack.com" />
               </div>
 
-                <button type="submit">START FREE MEMBERSHIP</button>
-                <p class="terms">
-                    By signing up, I agree to Double&apos;s <a href="/terms">Terms of Referral Program</a>, <a href="http://double.co/terms">Terms of Services</a> and
-                    <a href="http://double.co/privacy">Privacy Policy</a>.
-                    * denotes required fields.
-                </p>
+              <input name="discount-code" type="hidden" value="{{discountCode}}"/>
+
+              <button type="submit">START FREE MEMBERSHIP</button>
+              <p class="terms">
+                  By signing up, I agree to Double&apos;s <a href="/terms">Terms of Referral Program</a>, <a href="http://double.co/terms">Terms of Services</a> and
+                  <a href="http://double.co/privacy">Privacy Policy</a>.
+                  * denotes required fields.
+              </p>
             </form>
         </div>
     </div>

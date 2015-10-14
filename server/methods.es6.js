@@ -1,7 +1,7 @@
 Meteor.methods({
-  signup(name, email, slack) {
+  signup(name, email, slack, code) {
     this.unblock();
-    LifeCycle.createAndWelcomeCustomer(name, email, slack);
+    LifeCycle.createAndWelcomeCustomer(name, email, slack, code);
   },
   register(name, email, slack, referrerName, referrerUserId) {
     this.unblock();
