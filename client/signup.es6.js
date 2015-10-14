@@ -6,7 +6,7 @@ Template.signup.events({
   "submit #signup" : function(e, tmpl) {
     e.preventDefault();
     const name = e.target['full-name'].value;
-    const email = e.target.email.value;
+    const email = e.target.['email'].value;
     const slack = e.target['slack'].value;
     const code = e.target['discount-code'].value;
 
