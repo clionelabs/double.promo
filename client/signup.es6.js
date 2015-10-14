@@ -32,10 +32,11 @@ Template.signup.helpers({
   },
   validTillString() {
     const promoCode = Template.instance().data.promoCode;
-    return moment(promoCode.validTill).format('MMM Do, YYYY');
+    return promoCode.validTillString();
   },
   effectiveRate() {
+    const currentRate = 6.0; // TODO: Propertly pass in the rate
     const promoCode = Template.instance().data.promoCode;
-    return 6.0 * (100-promoCode.minuteRateDiscountPercent) / 100.0;
+    return promoCode.effectiveRate(currentRate);
   }
 });
