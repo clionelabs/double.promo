@@ -17,7 +17,7 @@ LifeCycle = {
         lastname: lastname,
         slack: slack,
         hourlyRate: effectivePlan.minuteRate, // TODO hourlyRate is incorrectly labelled
-        creditMs: effectivePlan.initialMinuteCredit
+        creditMs: effectivePlan.initialMinuteCredit * 60 * 1000 // TODO creditMs is actually in milliseconds
       }
     };
     try {
