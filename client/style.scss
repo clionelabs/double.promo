@@ -173,6 +173,11 @@ body {
         label {
           font-weight: bold;
         }
+
+        .optional {
+          color: darken($double-grey, 20%);
+          float:right;
+        }
       }
       label,.terms {
         font-size: 0.885rem;
