@@ -1,11 +1,8 @@
 EmailTemplates = {
-  welcome (firstName, emailAddress, slackURL, code, minuteRateDiscountPercent, effectiveMinuteRate, discountValidTill) {
-    let text = `${firstName},\n\nYour Double (me!) is ready to serve! Simply reply to this email with your first request.\n\n`;
-    if (!slackURL) {
-      text = `${text}We work best over Slack (https://slack.com). Most of our customers invite me (double@double.co) to their Slack. Or, we can create a new Slack between us. Slack is free and a great way to work with your team.\n\n`;
-    } else {
-      text = `${text}We work best over Slack. Invite me (double@double.co) to your Slack thru ${slackURL+'/admin/invites/full'} (Slack requires admin right to invite members and our software requires us to have "full member" rights).\n\n`;
-    }
+  welcome (userId, firstName, emailAddress, slackURL, code, minuteRateDiscountPercent, effectiveMinuteRate, discountValidTill) {
+    const telegramLink = `https://telegram.me/DoubleBot?start=${userId}`;
+
+    let text = `${firstName},\n\nYour Double (me!) is ready to serve! You can reach me:\n\n1. Telegram me on ${telegramLink}\n2. Slack me. Invite double@double.co to your Slack.\n3. Email me at double@double.co\n\n`;
     if (!code) {
       text = `${text}As a new customer, we have waived your first month membership fee and credited a 30-minute usage to your account. Remember chatting is always free with us and you only pay for the minutes we execute on our pre-agreed action plan.\n\n`;
       text = `${text}Throw us anything. Some of the common requests include market research, intern hiring and even selling used items. Email me your overdue tasks and I could help you cross those off your list.\n\n`;
