@@ -40,7 +40,6 @@ LifeCycle = {
   // of explicitly passing everything.
   welcomeNewCustomer (firstName, emailAddress, slackURL, code, minuteRateDiscountPercent, effectiveMinuteRate, discountValidTill) {
     const email = EmailTemplates.welcome(firstName, emailAddress, slackURL, code, minuteRateDiscountPercent, effectiveMinuteRate, discountValidTill);
-    console.log(JSON.stringify(email));
     Email.send(email);
   }
 };
