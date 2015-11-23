@@ -22,7 +22,7 @@ LifeCycle = {
     };
     try {
       const userId = D.Users.createCustomer(options);
-
+      Subscriptions.addDefaultForNewUser(userId);
       // TODO: to refactor later. All parameters are passed in explicitly to minimize coupling between email template user, subscription, and promo code models.
       const promoCode = PromoCodes.findOne({ code:code });
       self.welcomeNewCustomer(userId, firstname, email, slack, code, promoCode && promoCode.minuteRateDiscountPercent, effectivePlan.minuteRate, moment(promoCode && promoCode.validTill).format("MMM Do, YYYY"));
