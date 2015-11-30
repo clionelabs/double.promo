@@ -1,4 +1,5 @@
 LifeCycle = {
+  //TODO fire events to double dashboard
   createAndWelcomeCustomer (name, email, slack, code) {
     const self = this;
     const splitNames = name.split(' ');
@@ -16,7 +17,7 @@ LifeCycle = {
         firstname: firstname,
         lastname: lastname,
         slack: slack,
-        hourlyRate: effectivePlan.minuteRate, // TODO hourlyRate is incorrectly labelled
+        minuteRate: effectivePlan.minuteRate,
         creditMs: effectivePlan.initialMinuteCredit * 60 * 1000 // TODO creditMs is actually in milliseconds
       }
     };
